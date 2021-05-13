@@ -16,8 +16,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b build -d build",
     "build": "react-scripts build && echo \"www.mindback.com\" > build/CNAME",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
