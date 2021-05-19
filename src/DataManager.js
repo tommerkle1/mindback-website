@@ -1,16 +1,40 @@
 import React, { Component } from "react";
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import { description } from "commander";
 
-export default class DataManager extends Component {
-  render() {
-    const { data, userId } = this.props;
-
-    return data[userId].map((chartId, i) => (
-      <DataTable key={i} chartId={chartId} theme="dark" />
-    ));
+export default function DataManager() {
+  const { loading, error, data } = useQuery(gql`
+    query getNotes {
+      notes {
+        description
+      }
+    }
+  `);
+  if (loading) {
+    return <div>loading</div>;
   }
+  if (error) {
+    return <div>encountered an error: {error.message}</div>;
+  }
+  return (
+    <>
+      {data.notes.map(({ description }) => (
+        <div>{description}</div>
+      ))}
+    </>
+  );
+
+  // render() {
+  //   const { data, userId } = this.props;
+
+  //   return data[userId].map((chartId, i) => (
+  //     <MongoChart key={i} chartId={chartId} theme="dark" />
+  //   ));
+  // }
 }
 
-class DataTable extends Component {
+class MongoChart extends Component {
   render() {
     const { chartId, theme = "light", refresh = "60" } = this.props;
     return (
