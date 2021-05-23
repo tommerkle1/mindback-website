@@ -3,16 +3,9 @@ import React, { useMemo, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, Box, chakra } from "@chakra-ui/react";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { useTable, useSortBy } from "react-table";
-import { gql, useMutation } from "@apollo/client";
+// import { gql, useMutation } from "@apollo/client";
 
-const TableContainer = ({
-  columns,
-  data,
-  title,
-  updateData,
-  refetch,
-  onUpdate,
-}) => {
+const TableContainer = ({ columns, data, updateData, refetch, onUpdate }) => {
   const [editingRow, setEditingRow] = useState(null);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
@@ -22,8 +15,8 @@ const TableContainer = ({
         initialState: {
           sortBy: [
             {
-              id: "created",
-              desc: false,
+              id: "creation_date",
+              desc: true,
             },
           ],
         },
@@ -68,7 +61,7 @@ const TableContainer = ({
             prepareRow(row);
             return (
               <TableRow
-                key={i}
+                key={row.original._id}
                 row={row}
                 setEditingRow={setEditingRow}
                 editingRow={editingRow}
@@ -83,25 +76,25 @@ const TableContainer = ({
   );
 };
 
-const TableRow = ({ index, row, setEditingRow, editingRow, onUpdate }) => {
-  const UPDATE_NOTE = gql`
-    mutation updateOneNote($id: ObjectId, $description: String) {
-      updateOneNote(query: { _id: $id }, set: { description: $description }) {
-        _id
-      }
-    }
-  `;
+const TableRow = ({ row, setEditingRow, editingRow, onUpdate }) => {
+  // const UPDATE_NOTE = gql`
+  //   mutation updateOneNote($id: ObjectId, $description: String) {
+  //     updateOneNote(query: { _id: $id }, set: { description: $description }) {
+  //       _id
+  //     }
+  //   }
+  // `;
 
   const [rowData, setRowData] = useState(row.original);
 
-  const [updateNote, { data }] = useMutation(UPDATE_NOTE);
+  // const [updateNote, { data }] = useMutation(UPDATE_NOTE);
 
   const editable = useMemo(
     () => row.original._id === editingRow,
     [row.original._id, editingRow]
   );
   return (
-    <Tr key={index} {...row.getRowProps()}>
+    <Tr {...row.getRowProps()}>
       {row.cells.map((cell) => {
         return (
           <Td {...cell.getCellProps()}>

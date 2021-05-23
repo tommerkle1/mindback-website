@@ -26,6 +26,7 @@ export default function IdeaManager() {
     () => [
       {
         Header: "Actions",
+        disableSortBy: true,
         Cell: (props) => <RowActions {...props} />,
       },
       {

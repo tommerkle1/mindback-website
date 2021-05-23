@@ -4,6 +4,7 @@ import AutoResizeTextarea from "./AutoResizeTextarea";
 import RowActions from "./RowActions";
 import ColorModeSwitcher from "./ColorModeSwitcher";
 import TableContainer from "./TableContainer";
+import NavigationBar from "./NavigationBar";
 export {
   EditableCell,
   TextCell,
@@ -11,4 +12,5 @@ export {
   RowActions,
   ColorModeSwitcher,
   TableContainer,
+  NavigationBar,
 };

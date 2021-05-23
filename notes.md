@@ -1,4 +1,5 @@
 # notes
+
 ## 4/29/21
 
 Need to think about adding some logic for different instances of mindback (agent)
@@ -23,9 +24,9 @@ Wonder if robot branding might be not the best thing to start with. maybe start 
 
 ## 5/6/21
 
-What are some interesting questions when consdering how mindback will be important. 
+What are some interesting questions when consdering how mindback will be important.
 
-- The ways humans interact with information, computers and automation is not ideal. 
+- The ways humans interact with information, computers and automation is not ideal.
 - why has there been stagnation in human / machine interaction?
 - why have business models emerged that cause poor incentives?
 - how will a movement toward decentralization and crypto affect edge ML and personal computing?
@@ -41,9 +42,8 @@ What are some interesting questions when consdering how mindback will be importa
 - multi-channel interface
 - personal data collection / management
 - personal search engine
-    - query language for personal information
+  - query language for personal information
 - personal automation
-
 
 what are some interesting queries?
 
@@ -56,3 +56,14 @@ authentication... i think it'd be cool to auth via metamask!
 
 create interface for content publishing, focus, data management
 
+## 5/23/21
+
+i think the purpose of this is information collection, organization, and then mapping it to channels where the info might be useful.
+
+input manage act
+
+- random ideas -> organized -> push somewhere
+- health data
+- ...personal data
+
+conditional data flow

@@ -1,7 +1,7 @@
 import React from "react";
 import Textarea from "./AutoResizeTextarea";
 
-const EditableCell = ({ id, value, editable, setValue }) => {
+const EditableCell = ({ value, editable, setValue }) => {
   // We need to keep and update the state of the cell normally
 
   const onChange = (e) => {
@@ -9,10 +9,10 @@ const EditableCell = ({ id, value, editable, setValue }) => {
   };
 
   // If the initialValue is changed external, sync it up with our state
-  React.useEffect(() => {
-    console.log("initial value was updated");
-    setValue(value);
-  }, [value]);
+  // React.useEffect(() => {
+  //   console.log("initial value was updated");
+  //   setValue(value);
+  // }, [value]);
 
   return (
     <Textarea

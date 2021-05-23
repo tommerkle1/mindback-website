@@ -12,7 +12,7 @@ const RowActions = ({
 }) => {
   const onClose = () => {
     setRowUneditable();
-    resetRowData();
+    // resetRowData();
   };
 
   const onEdit = () => {
