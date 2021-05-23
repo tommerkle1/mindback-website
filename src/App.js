@@ -1,36 +1,24 @@
-import "./App.css";
-// import "react-table/react-table.css";
+import { ChakraProvider, theme, Box, Grid } from "@chakra-ui/react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./Home";
-import { IdeaManager } from "./Managers";
-
-const userData = [
-  {
-    id: "069",
-    sender: "+12062475036",
-    tz: "mt",
-  },
-  {
-    id: "420",
-    sender: "+12089918389",
-    tz: "mt",
-  },
-];
+import { IdeaManager } from "./managers";
+import { ColorModeSwitcher } from "./components";
 
 const App = () => (
-  <div style={{ height: "100%" }} className="App">
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      {userData.map((user, i) => (
-        <Route key={i} exact path={`/users/${user.id}`}>
-          <IdeaManager user={user} />
-        </Route>
-      ))}
-      <Route render={() => <Redirect to="/" />} />
-    </Switch>
-  </div>
+  <ChakraProvider theme={theme}>
+    <Box textAlign="center" fontSize="xl">
+      <Grid minH="100vh" p={3}>
+        <ColorModeSwitcher justifySelf="flex-end" />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path={`/users/:userId`} children={<IdeaManager />} />
+          <Route render={() => <Redirect to="/" />} />
+        </Switch>
+      </Grid>
+    </Box>
+  </ChakraProvider>
 );
 
 export default App;

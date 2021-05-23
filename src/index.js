@@ -1,20 +1,21 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { ColorModeScript } from "@chakra-ui/color-mode";
 import { ApolloProvider } from "@apollo/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import client from "./apolloClient";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
+    <ColorModeScript />
     <ApolloProvider client={client}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </ApolloProvider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById("root")
 );
 
