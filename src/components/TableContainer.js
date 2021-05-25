@@ -85,14 +85,13 @@ const TableRow = ({ row, setEditingRow, editingRow, onUpdate }) => {
   //   }
   // `;
 
-  const [rowData, setRowData] = useState(row.original);
+  const [updatedRowData, setUpdatedRowData] = useState({});
 
-  // const [updateNote, { data }] = useMutation(UPDATE_NOTE);
+  const rowData = { ...row.original, ...updatedRowData };
 
-  const editable = useMemo(
-    () => row.original._id === editingRow,
-    [row.original._id, editingRow]
-  );
+  const rowId = row.original._id;
+
+  const editable = useMemo(() => rowId === editingRow, [rowId, editingRow]);
   return (
     <Tr {...row.getRowProps()}>
       {row.cells.map((cell) => {
@@ -102,21 +101,12 @@ const TableRow = ({ row, setEditingRow, editingRow, onUpdate }) => {
               editable,
               value: rowData[cell.column.id],
               setValue: (value) =>
-                setRowData((rowData) => ({
+                setUpdatedRowData((rowData) => ({
                   ...rowData,
                   [cell.column.id]: value,
                 })),
-              updateData: () => {
-                // updateNote({
-                //   variables: {
-                //     id: row.original._id,
-                //     description: rowData.description,
-                //   },
-                // })
-
-                onUpdate();
-              },
-              resetRowData: () => setRowData(row.original),
+              updateData: () => onUpdate({ id: rowId, data: updatedRowData }),
+              resetRowData: () => setUpdatedRowData({}),
               setRowUneditable: () => setEditingRow(null),
               setRowEditable: () => setEditingRow(row.original._id),
             })}

@@ -25,10 +25,12 @@ export default function DataManager({ query, title, columns }) {
         data={data.notes}
         columns={columns}
         refetch={refetch}
-        onUpdate={() =>
+        onUpdate={({ id, data }) =>
           toast({
             title: "Idea Updated",
-            description: "Your idea has successfully been updated.",
+            description: `Row: ${id}, has been updated to include: ${JSON.stringify(
+              data
+            )}`,
             status: "success",
             duration: 1800,
             isClosable: true,
